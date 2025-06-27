@@ -1,4 +1,4 @@
-FROM centos:7
+FROM rockylinux:8
 
 LABEL maintainer="rp808462@gmail.com"
 
