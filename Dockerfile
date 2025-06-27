@@ -2,25 +2,23 @@ FROM centos:7
 
 LABEL maintainer="rp808462@gmail.com"
 
-# Install Apache and unzip
+# Install Apache and unzip utility
 RUN yum install -y httpd unzip && yum clean all
 
-# Download the ZIP from your GitHub
-ADD https://raw.githubusercontent.com/Its-me-ravi/File1/main/photogenic-master.zip /var/www/html/
+# Copy ZIP from local context (same repo folder)
+COPY photogenic-master.zip /var/www/html/
 
 # Set working directory
 WORKDIR /var/www/html/
 
-# Unzip the content
+# Extract the zip and clean up
 RUN unzip photogenic-master.zip && \
     cp -rvf photogenic-master/* . && \
     rm -rf photogenic-master photogenic-master.zip
 
-# Start Apache
+# Start Apache in the foreground
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 
-# Expose the web port
+# Expose HTTP port
 EXPOSE 80
-
-
 
