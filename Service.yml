@@ -1,14 +1,14 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: webapp
-  labels:
-    app: webapp
 spec:
-  ports:
-    - port: 8080
-      targetPort: 80
-      nodePort: 31200
+  type: NodePort
   selector:
     app: webapp
-  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080       # Internal service port
+      targetPort: 8080 # Container port (your app listens on this)
+      nodePort: 31200  # Exposed EC2 port
+
