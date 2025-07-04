@@ -17,4 +17,5 @@ spec:
           image: ravi9523/pipline-demo
           imagePullPolicy: Always
           ports:
-            - containerPort: 80 8080
+            - containerPort: 80
+            - containerPorst: 8080  
