@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 2
+  selector: # tells the controller which pods to watch/belong to
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+        - name: webapp
+          image: ravi9523/pipeline-demo
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
